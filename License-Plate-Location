@@ -9,7 +9,7 @@ int main(){
 	Mat Img = imread("1.jpeg");
 	
 	Mat RGBImg;
-	inRange(Img, Scalar(120, 10, 0),Scalar(240, 120, 80), RGBImg);
+	inRange(Img, Scalar(120, 10, 0),Scalar(240, 110, 70), RGBImg);
 	
 	Mat OriImg; 
 	Mat element = getStructuringElement(MORPH_RECT, Size(3, 3)); 
