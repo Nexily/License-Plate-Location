@@ -8,35 +8,9 @@ int main(){
 
 	Mat Img = imread("1.jpeg");
 	
-	unsigned char PixelB, PixelG, PixelR;  
-	unsigned char Dif = 60;            
-	unsigned char B = 180, G = 63, R = 23; 
-
-	Mat RGBImg = Img.clone(); 
-	int i = 0, j = 0;
-	for (i = 0; i < Img.rows; i++)  
-	{
-		for (j = 0; j < Img.cols; j++)
-		{
-			PixelB = Img.at<Vec3b>(i, j)[0]; 
-			PixelG = Img.at<Vec3b>(i, j)[1];
-			PixelR = Img.at<Vec3b>(i, j)[2];
-
-			if (abs(PixelB - B) < Dif && abs(PixelG - G) < Dif && abs(PixelR - R) < Dif)
-			{                                          
-				RGBImg.at<Vec3b>(i, j)[0] = 255; 
-				RGBImg.at<Vec3b>(i, j)[1] = 255;
-				RGBImg.at<Vec3b>(i, j)[2] = 255;
-			}
-			else
-			{
-				RGBImg.at<Vec3b>(i, j)[0] = 0; 
-				RGBImg.at<Vec3b>(i, j)[1] = 0;
-				RGBImg.at<Vec3b>(i, j)[2] = 0;
-			}
-		}
-	}
-
+	Mat RGBImg;
+	inRange(Img, Scalar(120, 10, 0),Scalar(240, 120, 80), RGBImg);
+	
 	Mat OriImg; 
 	Mat element = getStructuringElement(MORPH_RECT, Size(3, 3)); 
 	dilate(RGBImg, OriImg, element); 
